@@ -19,14 +19,14 @@ jobs:
       # `secrets` no se puede evaluar directamente en un `if` de paso.
       HAY_FIRMA: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: npm
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
@@ -71,7 +71,7 @@ jobs:
       - name: Huella del archivo
         run: sha256sum mi-peso.apk | tee mi-peso.apk.sha256
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: mi-peso-apk
           path: |
