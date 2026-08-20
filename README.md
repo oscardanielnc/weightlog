@@ -9,7 +9,7 @@ Aplicación web instalable (PWA) y APK de Android construidos desde una sola bas
 [![APK](https://github.com/oscardanielnc/control-weight/actions/workflows/apk.yml/badge.svg)](https://github.com/oscardanielnc/control-weight/actions/workflows/apk.yml)
 [![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue)](LICENSE)
 
-[Sitio del producto](https://oscardanielnc.github.io/control-weight/) ·
+[Sitio del producto](https://weightlog.oscarnavarro.dev/) ·
 [Descargar el APK](https://github.com/oscardanielnc/control-weight/releases/latest) ·
 [Arquitectura](docs/ARQUITECTURA.md) ·
 [Seguridad](SECURITY.md)
@@ -122,7 +122,9 @@ Sin nada instalado, el flujo **APK de Android** de GitHub Actions lo compila en 
 
 `npm run sitio` produce la carpeta `sitio/`, que es lo único que se publica:
 
-- **GitHub Pages**: automático en cada empuje a `main` (flujo `pages.yml`).
+- **weightlog.oscarnavarro.dev**: la VM de Oracle sirve el sitio con Nginx en un contenedor,
+  publicado por el túnel de Cloudflare que termina el TLS (`deploy/docker/`).
+- **GitHub Pages**: espejo automático en cada empuje a `main` (flujo `pages.yml`).
 - **VM de Oracle Cloud**: `./deploy/desplegar.sh usuario@ip` compila, verifica y sincroniza por
   rsync; Nginx sirve los archivos con la configuración de [`deploy/nginx/`](deploy/nginx/).
 
