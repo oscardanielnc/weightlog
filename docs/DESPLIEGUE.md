@@ -113,6 +113,39 @@ activar el modo avión y comprobar que sigue funcionando.
 
 ---
 
+## 2.bis  VM con túnel de Cloudflare (el despliegue en uso)
+
+La VM de Oracle no expone 80/443: los sitios salen por un **túnel de Cloudflare**
+(`cloudflared`), que termina el TLS y llega a un servicio que escucha solo en
+`127.0.0.1`. Mi Peso sigue ese mismo patrón.
+
+```bash
+# En la VM
+git clone https://github.com/oscardanielnc/control-weight.git /opt/mi-peso
+cd /opt/mi-peso
+./deploy/docker/desplegar-vm.sh          # compila y levanta Nginx en 127.0.0.1:8082
+```
+
+El script no instala Node en el servidor: compila dentro de un contenedor
+`node:22-alpine` desechable y deja únicamente Nginx sirviendo `sitio/`.
+
+Publicar el subdominio, una sola vez:
+
+```bash
+# Crea el CNAME en Cloudflare (necesita ~/.cloudflared/cert.pem)
+cloudflared tunnel route dns <ID-DEL-TUNEL> peso.oscarnavarro.dev
+
+# Añadir a /etc/cloudflared/config.yml, antes de la regla http_status:404
+#   - hostname: peso.oscarnavarro.dev
+#     service: http://localhost:8082
+sudo systemctl restart cloudflared
+```
+
+Para actualizar tras un cambio en `main`, basta con volver a ejecutar
+`./deploy/docker/desplegar-vm.sh`.
+
+---
+
 ## 3. APK
 
 El flujo [`apk.yml`](../.github/workflows/apk.yml) compila el APK en la nube. Se ejecuta a mano

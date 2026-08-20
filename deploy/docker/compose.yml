@@ -1,0 +1,19 @@
+# Sitio de Mi Peso servido por Nginx y publicado a través del túnel de
+# Cloudflare que ya corre en la máquina. Solo escucha en la interfaz local:
+# nada queda expuesto directamente a internet.
+services:
+  web:
+    image: nginx:alpine
+    container_name: mi-peso-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${PUERTO:-8082}:80"
+    volumes:
+      - ../../sitio:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./seguridad.conf:/etc/nginx/snippets/seguridad.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
