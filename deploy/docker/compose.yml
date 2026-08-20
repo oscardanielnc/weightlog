@@ -1,19 +1,67 @@
 # Sitio de Mi Peso servido por Nginx y publicado a través del túnel de
 # Cloudflare que ya corre en la máquina. Solo escucha en la interfaz local:
 # nada queda expuesto directamente a internet.
+#
+# El contenedor está endurecido a propósito: en esta misma VM otro servicio fue
+# comprometido y lo único que impidió que el ataque saliera fue el aislamiento
+# de Docker. Aquí se asume que el proceso puede caer y se le quita todo lo que
+# no necesita para servir archivos estáticos.
 services:
   web:
     image: nginx:alpine
     container_name: mi-peso-web
     restart: unless-stopped
+
+    # Solo loopback: cloudflared llega por aquí. Publicarlo en 0.0.0.0 lo
+    # dejaría alcanzable por IP directa saltándose Cloudflare. Cerrar el puerto
+    # en firewalld no bastaría: Docker inserta sus reglas por delante, así que
+    # el bind a loopback es la única medida efectiva.
     ports:
       - "127.0.0.1:${PUERTO:-8082}:80"
+
     # La `z` de cada montaje reetiqueta los archivos para SELinux, que en
     # Oracle Linux está en modo enforcing y si no bloquearía la lectura.
+    # Los tres van de solo lectura: el contenedor nunca escribe en el sitio.
     volumes:
       - ../../sitio:/usr/share/nginx/html:ro,z
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro,z
       - ./seguridad.conf:/etc/nginx/snippets/seguridad.conf:ro,z
+
+    # --- Aislamiento --------------------------------------------------------
+    # Sistema de archivos inmutable: ni un binario ni una configuración pueden
+    # ser reescritos desde dentro.
+    read_only: true
+
+    # Impide que un proceso gane privilegios vía binarios setuid.
+    security_opt:
+      - no-new-privileges:true
+
+    # Se quitan todas las capabilities y se devuelven solo las cuatro que nginx
+    # necesita: NET_BIND_SERVICE para escuchar en el puerto 80 dentro del
+    # contenedor y CHOWN/SETUID/SETGID para bajar los workers a un usuario sin
+    # privilegios. Con `cap_drop: ALL` a secas, nginx no arranca.
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+      - CHOWN
+      - SETUID
+      - SETGID
+
+    # Con el sistema de archivos de solo lectura, nginx necesita estos tres
+    # destinos escribibles: el PID en /var/run y sus directorios temporales en
+    # /var/cache/nginx. Van en memoria, sin ejecución ni setuid.
+    tmpfs:
+      - /var/cache/nginx:rw,noexec,nosuid,nodev,size=32m
+      - /var/run:rw,noexec,nosuid,nodev,size=8m
+      - /tmp:rw,noexec,nosuid,nodev,size=16m
+
+    # Topes de recursos: un minero dentro del contenedor no puede llevarse la
+    # máquina por delante.
+    mem_limit: 128m
+    cpus: 0.25
+    pids_limit: 100
+
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost/"]
       interval: 60s
