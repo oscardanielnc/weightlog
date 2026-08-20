@@ -121,8 +121,8 @@ La VM de Oracle no expone 80/443: los sitios salen por un **túnel de Cloudflare
 
 ```bash
 # En la VM
-git clone https://github.com/oscardanielnc/control-weight.git /opt/mi-peso
-cd /opt/mi-peso
+git clone https://github.com/oscardanielnc/control-weight.git /opt/weightlog
+cd /opt/weightlog
 ./deploy/docker/desplegar-vm.sh          # compila y levanta Nginx en 127.0.0.1:8082
 ```
 
@@ -133,10 +133,10 @@ Publicar el subdominio, una sola vez:
 
 ```bash
 # Crea el CNAME en Cloudflare (necesita ~/.cloudflared/cert.pem)
-cloudflared tunnel route dns <ID-DEL-TUNEL> peso.oscarnavarro.dev
+cloudflared tunnel route dns <ID-DEL-TUNEL> weightlog.oscarnavarro.dev
 
 # Añadir a /etc/cloudflared/config.yml, antes de la regla http_status:404
-#   - hostname: peso.oscarnavarro.dev
+#   - hostname: weightlog.oscarnavarro.dev
 #     service: http://localhost:8082
 sudo systemctl restart cloudflared
 ```

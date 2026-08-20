@@ -18,7 +18,7 @@ git pull --ff-only
 
 echo "==> Compilando el sitio en un contenedor de Node"
 docker run --rm \
-  -v "$raiz":/proyecto -w /proyecto \
+  -v "$raiz":/proyecto:z -w /proyecto \
   -e npm_config_update_notifier=false \
   node:22-alpine \
   sh -c 'npm ci --no-audit --no-fund && npm run build && npm run sitio'

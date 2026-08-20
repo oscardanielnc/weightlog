@@ -8,10 +8,12 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:${PUERTO:-8082}:80"
+    # La `z` de cada montaje reetiqueta los archivos para SELinux, que en
+    # Oracle Linux está en modo enforcing y si no bloquearía la lectura.
     volumes:
-      - ../../sitio:/usr/share/nginx/html:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./seguridad.conf:/etc/nginx/snippets/seguridad.conf:ro
+      - ../../sitio:/usr/share/nginx/html:ro,z
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro,z
+      - ./seguridad.conf:/etc/nginx/snippets/seguridad.conf:ro,z
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost/"]
       interval: 60s
