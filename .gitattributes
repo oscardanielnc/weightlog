@@ -1,0 +1,19 @@
+# Normaliza los finales de línea: el repositorio guarda LF siempre.
+# Sin esto, un archivo editado en Windows puede llegar al servidor con CRLF y
+# un script deja de ejecutarse ("/usr/bin/env: 'bash\r'").
+* text=auto eol=lf
+
+# Archivos que sí deben conservar CRLF en Windows.
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+gradlew.bat text eol=crlf
+
+# Binarios: git no debe tocarlos.
+*.png  binary
+*.jpg  binary
+*.ico  binary
+*.wasm binary
+*.jar  binary
+*.apk  binary
+*.keystore binary
+*.jks  binary
