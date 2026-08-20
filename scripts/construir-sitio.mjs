@@ -10,7 +10,7 @@
  * Se usa igual en GitHub Pages y en la VM de Oracle, así que lo que se prueba
  * en local es exactamente lo que se despliega.
  */
-import { cp, mkdir, rm, stat } from 'node:fs/promises';
+import { cp, mkdir, readdir, rm, stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -33,8 +33,12 @@ async function copiar(origen, hacia) {
   await cp(origen, hacia, { recursive: true });
 }
 
-await rm(destino, { recursive: true, force: true });
+// Se vacía la carpeta en vez de borrarla: si un contenedor la tiene montada,
+// recrearla cambiaría el inodo y el servidor seguiría sirviendo la anterior.
 await mkdir(destino, { recursive: true });
+for (const entrada of await readdir(destino)) {
+  await rm(join(destino, entrada), { recursive: true, force: true });
+}
 
 await copiar(join(raiz, 'apps', 'landing', 'dist'), destino);
 await copiar(join(raiz, 'apps', 'app', 'dist'), join(destino, 'app'));

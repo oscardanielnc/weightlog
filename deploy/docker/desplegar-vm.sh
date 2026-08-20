@@ -25,7 +25,8 @@ docker run --rm \
 
 echo "==> Levantando Nginx"
 cd deploy/docker
-docker compose up -d
+# --force-recreate vuelve a aplicar las etiquetas de SELinux a los montajes.
+docker compose up -d --force-recreate
 
 echo "==> Comprobando"
 sleep 2
