@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  La aplicación no hace ninguna petición de red: todo vive dentro del APK y los
+  datos se quedan en el dispositivo. Esta configuración lo vuelve explícito y
+  bloquea cualquier tráfico en claro que algún componente intentara abrir.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

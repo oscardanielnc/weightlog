@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Mi Peso</string>
+    <string name="title_activity_main">Mi Peso</string>
+    <string name="package_name">pe.oscar.mipeso</string>
+    <string name="custom_url_scheme">pe.oscar.mipeso</string>
+</resources>

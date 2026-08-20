@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mi Peso — registro de peso e IMC que nunca sale de tu teléfono</title>
+    <meta
+      name="description"
+      content="Aplicación Android y PWA para registrar tu peso, ver tu IMC día a día en un calendario de colores y seguir tu progreso. Base de datos SQLite dentro del dispositivo: sin cuentas, sin servidores y sin conexión."
+    />
+    <meta name="theme-color" content="#0b0e14" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="canonical" href="https://oscardanielnc.github.io/control-weight/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mi Peso — registro de peso e IMC 100 % local" />
+    <meta
+      property="og:description"
+      content="PWA + APK Android con SQLite embebido. Tus datos nunca salen del dispositivo."
+    />
+    <meta property="og:image" content="./capturas/1-registro.png" />
+    <meta property="og:locale" content="es_PE" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Mi Peso",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Android 7+, navegadores modernos",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PEN" },
+        "author": { "@type": "Person", "name": "Oscar Navarro" },
+        "description": "Registro de peso corporal e IMC con almacenamiento local en SQLite. Funciona sin conexión y sin servidores."
+      }
+    </script>
+    <link rel="stylesheet" href="./src/estilos.css" />
+  </head>
+
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <header class="cinta">
+      <a class="marca" href="#inicio">
+        <img src="./favicon.png" alt="" width="28" height="28" />
+        <span>Mi&nbsp;Peso</span>
+      </a>
+      <nav aria-label="Secciones">
+        <a href="#pantallas">Pantallas</a>
+        <a href="#privacidad">Privacidad</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#descarga">Descarga</a>
+        <a class="cinta-repo" href="https://github.com/oscardanielnc/control-weight" rel="noopener">
+          Código
+        </a>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <!-- ---------------------------------------------------------------- -->
+      <section class="heroe" id="inicio">
+        <div class="heroe-texto">
+          <p class="etiqueta">PWA + APK Android · sin servidores</p>
+          <h1>Tu peso, tu teléfono, <em>y nada más</em>.</h1>
+          <p class="entrada">
+            Anota tu peso en dos toques y mira cómo evoluciona: un calendario que se pinta según
+            tu IMC del día y una curva de progreso con línea de tendencia. Todo se guarda en una
+            base de datos SQLite <strong>dentro del dispositivo</strong>: sin cuenta, sin nube y
+            sin conexión.
+          </p>
+
+          <div class="botones">
+            <a class="boton primario" id="btn-apk" href="https://github.com/oscardanielnc/control-weight/releases/latest" rel="noopener">
+              <span aria-hidden="true">⬇</span> Descargar APK
+            </a>
+            <a class="boton secundario" href="./app/" >Abrir la app web</a>
+          </div>
+          <p class="pie-boton">
+            Android 7 o superior · ~1 MB · o instálala desde el navegador como aplicación.
+          </p>
+
+          <ul class="sellos">
+            <li><strong>0</strong> peticiones de red</li>
+            <li><strong>0</strong> rastreadores</li>
+            <li><strong>30</strong> pruebas automatizadas</li>
+          </ul>
+        </div>
+
+        <div class="heroe-vista">
+          <figure class="telefono destacado">
+            <img
+              src="./capturas/1-registro.png"
+              alt="Pantalla de registro: campo de peso, botón Registrar, promedio del día con su IMC y últimos registros."
+              width="780"
+              height="1600"
+              loading="eager"
+            />
+          </figure>
+          <figure class="telefono lateral">
+            <img
+              src="./capturas/2-calendario.png"
+              alt="Calendario mensual con los días coloreados según el IMC promedio de cada día."
+              width="780"
+              height="1600"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------------- -->
+      <section class="seccion" id="pantallas">
+        <header class="titulo-seccion revelar">
+          <h2>Cuatro pantallas, ningún rodeo</h2>
+          <p>
+            Abrir la aplicación y registrar el peso es un solo gesto. El resto es lectura: ver el
+            día, el mes y la tendencia.
+          </p>
+        </header>
+
+        <div class="rejilla-pantallas">
+          <article class="tarjeta revelar">
+            <figure class="telefono"><img src="./capturas/1-registro.png" alt="Pantalla de registro" width="780" height="1600" loading="lazy" /></figure>
+            <h3>Registro</h3>
+            <p>
+              Lo primero que aparece al abrir. Escribes el peso, pulsas <em>Registrar</em> y queda
+              guardado con fecha y hora exactas de Perú. Si te pesas varias veces al día, la app
+              trabaja con el promedio.
+            </p>
+          </article>
+
+          <article class="tarjeta revelar">
+            <figure class="telefono"><img src="./capturas/2-calendario.png" alt="Pantalla de calendario" width="780" height="1600" loading="lazy" /></figure>
+            <h3>Calendario</h3>
+            <p>
+              Cada día se pinta con el color de tu IMC: verde en el rango ideal, ámbar cerca del
+              límite y rojo fuera de rango. Los días sin pesarte quedan en gris. Un toque abre el
+              detalle con todas las pesadas.
+            </p>
+          </article>
+
+          <article class="tarjeta revelar">
+            <figure class="telefono"><img src="./capturas/3-progreso.png" alt="Pantalla de progreso" width="780" height="1600" loading="lazy" /></figure>
+            <h3>Progreso</h3>
+            <p>
+              El plano de peso contra tiempo, con la franja del rango ideal de fondo y una línea de
+              tendencia por mínimos cuadrados. Filtros de 7, 30, 90 días o todo el historial.
+            </p>
+          </article>
+
+          <article class="tarjeta revelar">
+            <figure class="telefono"><img src="./capturas/4-ajustes.png" alt="Pantalla de ajustes" width="780" height="1600" loading="lazy" /></figure>
+            <h3>Ajustes</h3>
+            <p>
+              Tu estatura (base del cálculo de IMC), la tabla de colores traducida a kilos y el
+              respaldo: exportar todo a un archivo JSON e importarlo en otro equipo sin duplicar
+              nada.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------------- -->
+      <section class="seccion franja" id="privacidad">
+        <header class="titulo-seccion revelar">
+          <h2>Privacidad por diseño, no por promesa</h2>
+          <p>
+            No hay una política de privacidad que leer porque no hay datos que enviar: la
+            aplicación no tiene a dónde mandarlos.
+          </p>
+        </header>
+
+        <div class="rejilla-hechos">
+          <article class="hecho revelar">
+            <h3>Todo vive en el dispositivo</h3>
+            <p>
+              El archivo SQLite se guarda en IndexedDB (PWA) o dentro del contenedor privado de la
+              aplicación (APK). Ninguna otra app del teléfono puede leerlo.
+            </p>
+          </article>
+          <article class="hecho revelar">
+            <h3>Cero llamadas de red</h3>
+            <p>
+              Ni analítica, ni fuentes remotas, ni CDN, ni actualizaciones silenciosas. La
+              compilación de producción declara
+              <code>connect-src 'self'</code> y bloquea todo lo demás.
+            </p>
+          </article>
+          <article class="hecho revelar">
+            <h3>Superficie de ataque mínima</h3>
+            <p>
+              Política de seguridad de contenido estricta, <code>object-src 'none'</code>,
+              <code>base-uri 'none'</code> y respaldo de Android desactivado para que los datos no
+              viajen a la nube de copias de seguridad.
+            </p>
+          </article>
+          <article class="hecho revelar">
+            <h3>Tus datos son tuyos</h3>
+            <p>
+              Exportas todo el historial a un JSON legible cuando quieras, y borras todo con una
+              confirmación de dos pasos. Sin cuentas que cerrar ni soporte al que escribir.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------------- -->
+      <section class="seccion" id="arquitectura">
+        <header class="titulo-seccion revelar">
+          <h2>Cómo está construida</h2>
+          <p>
+            Una sola base de código compilada dos veces: como aplicación web instalable y como APK
+            nativo con Capacitor.
+          </p>
+        </header>
+
+        <div class="diagrama revelar">
+          <div class="capa">
+            <span class="capa-nombre">Interfaz</span>
+            <ul>
+              <li>React 19</li>
+              <li>TypeScript estricto</li>
+              <li>SVG a mano (sin librería de gráficos)</li>
+              <li>CSS con variables, tema claro y oscuro</li>
+            </ul>
+          </div>
+          <div class="flecha" aria-hidden="true"></div>
+          <div class="capa">
+            <span class="capa-nombre">Estado y dominio</span>
+            <ul>
+              <li><code>useSyncExternalStore</code> sobre la base</li>
+              <li>Fechas de Perú en UTC−5 fijo</li>
+              <li>Cortes de IMC de la OMS</li>
+            </ul>
+          </div>
+          <div class="flecha" aria-hidden="true"></div>
+          <div class="capa">
+            <span class="capa-nombre">Datos</span>
+            <ul>
+              <li>SQLite compilado a WebAssembly</li>
+              <li>Esquema versionado con <code>user_version</code></li>
+              <li>Volcado diferido a IndexedDB</li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="pilas revelar">
+          <li>React 19</li>
+          <li>TypeScript</li>
+          <li>Vite 8</li>
+          <li>SQLite · sql.js (WASM)</li>
+          <li>IndexedDB</li>
+          <li>PWA · Workbox</li>
+          <li>Capacitor 8</li>
+          <li>Vitest</li>
+          <li>oxlint</li>
+          <li>GitHub Actions</li>
+          <li>Nginx · Oracle Cloud</li>
+        </ul>
+
+        <div class="rejilla-decisiones">
+          <article class="decision revelar">
+            <h3>SQLite embebido, no <code>localStorage</code></h3>
+            <p>
+              El promedio por día, los máximos y mínimos y el conteo salen de una sola consulta
+              agrupada. Con un almacén de claves habría que recorrer todo el historial en
+              JavaScript en cada render.
+            </p>
+          </article>
+          <article class="decision revelar">
+            <h3>La hora de Perú no se negocia</h3>
+            <p>
+              Cada registro guarda el instante UTC y, además, la fecha y hora de Lima ya resueltas
+              con el desfase fijo de UTC−5. Así el día al que pertenece una pesada no cambia si el
+              teléfono viaja o tiene mal la zona horaria.
+            </p>
+          </article>
+          <article class="decision revelar">
+            <h3>Offline primero, de verdad</h3>
+            <p>
+              El service worker precarga los 17 archivos de la aplicación, incluido el binario de
+              SQLite. Tras la primera visita funciona en modo avión, y el APK ni siquiera necesita
+              esa primera visita.
+            </p>
+          </article>
+          <article class="decision revelar">
+            <h3>Probado donde importa</h3>
+            <p>
+              30 pruebas automatizadas cubren los cruces de medianoche, los bordes exactos de las
+              categorías de IMC y las consultas contra un SQLite real en memoria, incluida la
+              reimportación de respaldos sin duplicar filas.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------------- -->
+      <section class="seccion franja" id="descarga">
+        <header class="titulo-seccion revelar">
+          <h2>Instalar</h2>
+          <p>Dos caminos; el mismo código en los dos.</p>
+        </header>
+
+        <div class="rejilla-descarga">
+          <article class="tarjeta-descarga revelar">
+            <h3><span aria-hidden="true">🤖</span> APK para Android</h3>
+            <ol>
+              <li>Descarga el archivo <code>.apk</code> de la última versión publicada.</li>
+              <li>
+                Ábrelo en el teléfono y permite la instalación desde esta fuente cuando Android lo
+                pregunte.
+              </li>
+              <li>Listo: la app queda en el cajón de aplicaciones y funciona sin datos móviles.</li>
+            </ol>
+            <a class="boton primario" href="https://github.com/oscardanielnc/control-weight/releases/latest" rel="noopener">
+              Ir a la última versión
+            </a>
+          </article>
+
+          <article class="tarjeta-descarga revelar">
+            <h3><span aria-hidden="true">🌐</span> Aplicación web instalable</h3>
+            <ol>
+              <li>Abre la aplicación web en el navegador del teléfono.</li>
+              <li>Menú <strong>⋮</strong> → <strong>Agregar a pantalla de inicio</strong>.</li>
+              <li>Se abre a pantalla completa, con su icono, y sigue funcionando sin conexión.</li>
+            </ol>
+            <a class="boton secundario" href="./app/">Abrir la app web</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div>
+        <strong>Mi Peso</strong>
+        <p>Proyecto personal de Oscar Navarro · Lima, Perú</p>
+      </div>
+      <nav aria-label="Enlaces del proyecto">
+        <a href="https://github.com/oscardanielnc/control-weight" rel="noopener">Repositorio</a>
+        <a href="https://github.com/oscardanielnc/control-weight/blob/main/SECURITY.md" rel="noopener">Seguridad</a>
+        <a href="https://github.com/oscardanielnc/control-weight/blob/main/LICENSE" rel="noopener">Licencia MIT</a>
+      </nav>
+      <p class="aviso">
+        Mi Peso es una herramienta de seguimiento personal y no da consejo médico. El IMC es un
+        indicador orientativo: consulta a un profesional de la salud antes de tomar decisiones
+        sobre tu peso.
+      </p>
+    </footer>
+
+    <script type="module" src="./src/principal.js"></script>
+  </body>
+</html>

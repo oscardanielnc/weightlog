@@ -1,0 +1,41 @@
+# Dependencias
+node_modules
+
+# Compilaciones
+dist
+dist-ssr
+sitio/
+coverage/
+*.local
+
+# Registros
+logs
+*.log
+npm-debug.log*
+
+# Editores y sistema
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.sw?
+
+# Android / Capacitor
+apps/app/android/app/build/
+apps/app/android/build/
+apps/app/android/.gradle/
+apps/app/android/local.properties
+apps/app/android/app/src/main/assets/public/
+apps/app/android/app/src/main/assets/capacitor.config.json
+apps/app/android/app/src/main/assets/capacitor.plugins.json
+
+# Artefactos y secretos: nunca en el repositorio
+*.apk
+*.aab
+*.keystore
+*.jks
+*.base64
+.env
+.env.*

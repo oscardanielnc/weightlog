@@ -1,0 +1,93 @@
+name: APK de Android
+
+# Compila el APK en la nube: no hace falta Android SDK ni Java en la PC.
+#  - manualmente desde la pestaña Actions, o
+#  - automáticamente al publicar una etiqueta v* (además crea la Release
+#    con el APK adjunto, que es lo que enlaza el sitio de descarga).
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    env:
+      # `secrets` no se puede evaluar directamente en un `if` de paso.
+      HAY_FIRMA: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: android-actions/setup-android@v3
+
+      - run: npm ci
+
+      - name: Pruebas
+        run: npm test
+
+      - name: Compilar web y sincronizar Capacitor
+        run: npm run android:sync
+
+      - name: Preparar el almacén de claves
+        if: env.HAY_FIRMA == 'true'
+        env:
+          ALMACEN: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: echo "$ALMACEN" | base64 -d > "$RUNNER_TEMP/firma.jks"
+
+      - name: Compilar APK firmado
+        if: env.HAY_FIRMA == 'true'
+        working-directory: apps/app/android
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ runner.temp }}/firma.jks
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/mi-peso.apk"
+
+      - name: Compilar APK de depuración
+        if: env.HAY_FIRMA != 'true'
+        working-directory: apps/app/android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/mi-peso.apk"
+
+      - name: Huella del archivo
+        run: sha256sum mi-peso.apk | tee mi-peso.apk.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mi-peso-apk
+          path: |
+            mi-peso.apk
+            mi-peso.apk.sha256
+
+      - name: Publicar la Release con el APK
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            mi-peso.apk
+            mi-peso.apk.sha256
+          generate_release_notes: true
+          body: |
+            Instalación: descarga `mi-peso.apk`, ábrelo en el teléfono y permite
+            la instalación desde esta fuente. Verifica la huella con el archivo
+            `mi-peso.apk.sha256` si quieres asegurarte de que el archivo es el
+            que salió de esta compilación.

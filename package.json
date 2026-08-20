@@ -1,0 +1,43 @@
+{
+  "name": "control-weight",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mi Peso — seguimiento de peso corporal e IMC 100% local (PWA + APK Android). Monorepo: aplicación y sitio de producto.",
+  "license": "MIT",
+  "author": "Oscar Navarro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oscardanielnc/control-weight.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/app",
+    "apps/landing"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @control-weight/app",
+    "dev:landing": "npm run dev --workspace @control-weight/landing",
+    "build": "npm run build --workspaces",
+    "build:app": "npm run build --workspace @control-weight/app",
+    "build:landing": "npm run build --workspace @control-weight/landing",
+    "test": "npm run test --workspace @control-weight/app",
+    "test:cobertura": "npm run test:cobertura --workspace @control-weight/app",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "oxlint --config .oxlintrc.json apps",
+    "verificar": "npm run lint && npm run typecheck && npm test && npm run build",
+    "sitio": "node scripts/construir-sitio.mjs",
+    "apk": "npm run apk --workspace @control-weight/app",
+    "android:sync": "npm run android:sync --workspace @control-weight/app",
+    "android:studio": "npm run android:studio --workspace @control-weight/app"
+  },
+  "devDependencies": {
+    "oxlint": "^1.75.0",
+    "typescript": "~6.0.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
