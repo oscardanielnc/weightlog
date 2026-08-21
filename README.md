@@ -10,7 +10,7 @@ An installable web app (PWA) and an Android APK, built from a single codebase.
 [![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 [Live site](https://weightlog.oscarnavarro.dev/) ·
-[Download the APK](https://github.com/oscardanielnc/control-weight/releases/latest) ·
+[Download the APK](https://github.com/oscardanielnc/control-weight/releases/latest/download/mi-peso.apk) ·
 [Architecture](docs/ARQUITECTURA.md) ·
 [Security](SECURITY.md)
 
@@ -122,9 +122,12 @@ npm run sitio        # assembles sitio/ with the landing at the root and the app
 
 ## Installing on a phone
 
-**APK.** Grab it from the [latest release](https://github.com/oscardanielnc/control-weight/releases/latest),
-open it on the phone and allow installation from that source. The accompanying `.sha256` file lets
-you verify the APK is the one that came out of the public build.
+**APK.** [Download `mi-peso.apk`](https://github.com/oscardanielnc/control-weight/releases/latest/download/mi-peso.apk)
+directly, open it on the phone and allow installation from that source. The
+[accompanying `.sha256`](https://github.com/oscardanielnc/control-weight/releases/latest/download/mi-peso.apk.sha256)
+lets you verify the APK is the one that came out of the public build. It is currently signed with a
+debug key, so Android will warn about an unknown source — the checksum is what establishes
+provenance until a release keystore is configured.
 
 **Web app.** Open the site in Chrome and choose *Add to Home screen*. It keeps its icon, runs
 full-screen and works offline.

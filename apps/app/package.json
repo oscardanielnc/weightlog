@@ -1,7 +1,7 @@
 {
   "name": "@control-weight/app",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Aplicación PWA/Android de registro de peso e IMC. Los datos nunca salen del dispositivo.",
   "scripts": {
