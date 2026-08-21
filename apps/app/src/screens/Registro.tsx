@@ -6,6 +6,7 @@ import {
 import { fechaLima, fechaLarga, horaCorta } from '../lib/lima';
 import { etiquetaImc, imc, rangoIdeal, zonaDeImc } from '../lib/imc';
 import { useConsulta, useDatos } from '../estado/hooks';
+import Cabecera from '../componentes/Cabecera';
 
 const PESO_MIN = 20;
 const PESO_MAX = 300;
@@ -58,10 +59,7 @@ export default function Registro() {
 
   return (
     <div className="pantalla">
-      <header className="cabecera">
-        <h1>Mi peso</h1>
-        <p className="sutil">{fechaLarga(hoy)}</p>
-      </header>
+      <Cabecera titulo="Registro" sub={fechaLarga(hoy)} />
 
       <form className="tarjeta captura" onSubmit={registrar}>
         <label htmlFor="peso">{editando ? `Editando registro de ${horaCorta(editando.hora_lima)}` : 'Peso de ahora'}</label>
@@ -101,16 +99,26 @@ export default function Registro() {
       <section className="tarjeta">
         <h2>Últimos registros</h2>
         {recientes.length === 0 && <p className="sutil">Todavía no hay registros.</p>}
-        <ul className="lista">
+        <ul className="lista tarjetas">
           {recientes.map((r) => (
             <li key={r.id} className={editando?.id === r.id ? 'activo' : undefined}>
               <div>
                 <strong>{r.peso_kg.toFixed(1)} kg</strong>
-                <span className="sutil"> · {r.fecha_lima === hoy ? 'hoy' : diaMes(r.fecha_lima)} {horaCorta(r.hora_lima)}</span>
+                <span className="sutil">{r.fecha_lima === hoy ? 'hoy' : diaMes(r.fecha_lima)} {horaCorta(r.hora_lima)}</span>
               </div>
               <div className="fila-botones">
-                <button className="icono" aria-label="Editar" onClick={() => { setEditando(r); setTexto(String(r.peso_kg)); setError(null); }}>✎</button>
-                <button className="icono peligro" aria-label="Borrar" onClick={() => eliminar(r)}>✕</button>
+                <button className="icono" aria-label="Editar" onClick={() => { setEditando(r); setTexto(String(r.peso_kg)); setError(null); }}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                       strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16.5 4.5a2.1 2.1 0 0 1 3 3L9 18l-4 1 1-4 10.5-10.5Z" />
+                  </svg>
+                </button>
+                <button className="icono peligro" aria-label="Borrar" onClick={() => eliminar(r)}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+                       strokeWidth="1.9" strokeLinecap="round">
+                    <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
+                  </svg>
+                </button>
               </div>
             </li>
           ))}
@@ -137,8 +145,14 @@ function ResumenHoy({ promedio, conteo, estatura, previo }: {
         <span className={`chip zona-${zona}`}>IMC {valor.toFixed(1)} · {etiquetaImc(valor)}</span>
         {delta !== null && (
           <span className="sutil">
-            {delta === 0 ? 'igual que el día anterior'
-              : `${delta > 0 ? '▲' : '▼'} ${Math.abs(delta).toFixed(1)} kg vs. día anterior`}
+            {delta === 0 ? 'igual que el día anterior' : (
+              <>
+                <span className={delta > 0 ? 'texto-zona-ambar' : 'texto-zona-verde'}>
+                  {delta > 0 ? '▲' : '▼'} {Math.abs(delta).toFixed(1)} kg
+                </span>
+                {' vs. día anterior'}
+              </>
+            )}
           </span>
         )}
       </div>

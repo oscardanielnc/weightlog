@@ -3,6 +3,7 @@ import { registrosDelDia, resumenDiario } from '../lib/db';
 import { fechaLarga, fechaLima, horaCorta, nombreMes } from '../lib/lima';
 import { etiquetaImc, imc, zonaDeImc } from '../lib/imc';
 import { useConsulta, useDatos } from '../estado/hooks';
+import Cabecera from '../componentes/Cabecera';
 
 const DIAS_SEMANA = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -44,10 +45,10 @@ export default function Calendario() {
 
   return (
     <div className="pantalla">
-      <header className="cabecera">
-        <h1>Calendario</h1>
-        <p className="sutil">{conteoMes} {conteoMes === 1 ? 'día registrado' : 'días registrados'} este mes</p>
-      </header>
+      <Cabecera
+        titulo="Calendario"
+        sub={`${conteoMes} ${conteoMes === 1 ? 'día registrado' : 'días registrados'} este mes`}
+      />
 
       <div className="tarjeta">
         <div className="nav-mes">

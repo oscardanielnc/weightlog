@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="es-PE"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Calendario - Mi Peso</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            font-variant-numeric: tabular-nums;
+        }
+        .pb-safe-area-inset-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 16px);
+        }
+        .pt-safe-area-inset-top {
+            padding-top: env(safe-area-inset-top, 0px);
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EAE6E1;
+            border-radius: 4px;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        fondo: "#FDFCFB",
+                        superficie: "#FFFFFF",
+                        "superficie-2": "#F6F4F1",
+                        borde: "#EAE6E1",
+                        tinta: "#2B2A28",
+                        "tinta-2": "#5C574F",
+                        "tinta-3": "#7A756E",
+                        acento: "#5B76C6",
+                        "acento-pastel": "#8FA6DC",
+                        "acento-suave": "#EDF1FA",
+                        positivo: {
+                            fondo: "#DDEEE4",
+                            tinta: "#356E51",
+                            punto: "#7FBF9B"
+                        },
+                        aviso: {
+                            fondo: "#F7EBD6",
+                            tinta: "#7A5A18",
+                            punto: "#E8C07D"
+                        },
+                        negativo: {
+                            fondo: "#F8E3E3",
+                            tinta: "#A34848",
+                            punto: "#E88C8C"
+                        },
+                        neutro: {
+                            fondo: "#F0EDE9",
+                            tinta: "#8A857D",
+                            punto: "#DDD8D1"
+                        }
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        lg: "1rem",
+                        xl: "1.5rem",
+                        full: "9999px"
+                    },
+                    boxShadow: {
+                        soft: '0 1px 2px rgba(43,42,40,0.04), 0 8px 24px -12px rgba(43,42,40,0.10)',
+                        bottomNav: '0 -1px 2px rgba(43,42,40,0.04)'
+                    },
+                    fontFamily: {
+                        headline: ["Plus Jakarta Sans"],
+                        display: ["Plus Jakarta Sans"],
+                        body: ["Plus Jakarta Sans"],
+                        label: ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-fondo text-tinta min-h-screen flex flex-col pt-safe-area-inset-top">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 w-full px-4 pt-4 pb-3 bg-fondo border-b border-borde">
+<div class="flex justify-between items-start">
+<div>
+<h1 class="text-2xl font-bold font-headline tracking-tight text-tinta">Calendario</h1>
+<p class="text-[13px] font-body text-tinta-3 mt-0.5">18 días registrados este mes</p>
+</div>
+<div class="flex items-center bg-superficie-2 px-2.5 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-tinta-3 text-[14px] mr-1.5">lock</span>
+<span class="text-[11px] font-medium text-tinta-3">Solo en este equipo</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-6 pb-32 overflow-y-auto">
+<!-- Calendar Card -->
+<section class="bg-superficie rounded-xl p-4 shadow-soft mb-6">
+<!-- Calendar Navigation -->
+<div class="flex justify-between items-center mb-6">
+<button aria-label="Mes anterior" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-superficie-2 transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-tinta-2">chevron_left</span>
+</button>
+<h2 class="text-[15px] font-bold text-tinta">Agosto 2026</h2>
+<button aria-label="Mes siguiente" class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-superficie-2 transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-tinta-2">chevron_right</span>
+</button>
+</div>
+<!-- Calendar Days Header -->
+<div class="grid grid-cols-7 gap-1.5 mb-2">
+<div class="text-center text-[11px] font-medium text-tinta-3">L</div>
+<div class="text-center text-[11px] font-medium text-tinta-3">M</div>
+<div class="text-center text-[11px] font-medium text-tinta-3">M</div>
+<div class="text-center text-[11px] font-medium text-tinta-3">J</div>
+<div class="text-center text-[11px] font-medium text-tinta-3">V</div>
+<div class="text-center text-[11px] font-medium text-tinta-3">S</div>
+<div class="text-center text-[11px] font-medium text-tinta-3">D</div>
+</div>
+<!-- Calendar Grid (August 2026 starts on Saturday, but for prompt fidelity we'll start roughly to match prompt's implied dates) -->
+<!-- Note: Prompt says "empieza lunes", so we will draw a mock grid starting Monday -->
+<div class="grid grid-cols-7 gap-1.5 tabular-nums">
+<!-- Week 1 -->
+<div class="empty"></div> <!-- Placeholder for previous month if we wanted it, but let's assume 1st is Mon for visual simplicity as per prompt "empieza lunes" -->
+<!-- Day 1 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all relative">
+<span class="text-[13px] font-medium">1</span>
+</button>
+<!-- Day 2 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">2</span>
+</button>
+<!-- Day 3 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">3</span>
+</button>
+<!-- Day 4 (Ambar) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-aviso-fondo text-aviso-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">4</span>
+</button>
+<!-- Day 5 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">5</span>
+</button>
+<!-- Day 6 (Neutro) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-neutro-fondo text-neutro-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">6</span>
+</button>
+<!-- Day 7 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">7</span>
+</button>
+<!-- Week 2 -->
+<!-- Day 8 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">8</span>
+</button>
+<!-- Day 9 (Coral) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-negativo-fondo text-negativo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">9</span>
+</button>
+<!-- Day 10 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">10</span>
+</button>
+<!-- Day 11 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">11</span>
+</button>
+<!-- Day 12 (Ambar) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-aviso-fondo text-aviso-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">12</span>
+</button>
+<!-- Day 13 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">13</span>
+</button>
+<!-- Day 14 (Neutro) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-neutro-fondo text-neutro-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">14</span>
+</button>
+<!-- Week 3 -->
+<!-- Day 15 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">15</span>
+</button>
+<!-- Day 16 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">16</span>
+</button>
+<!-- Day 17 (Ambar) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-aviso-fondo text-aviso-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">17</span>
+</button>
+<!-- Day 18 (Verde) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">18</span>
+</button>
+<!-- Day 19 (Verde - SELECCIONADO) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta shadow-soft relative ring-2 ring-acento-pastel ring-offset-2 ring-offset-superficie hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-bold">19</span>
+</button>
+<!-- Day 20 (Neutro) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-neutro-fondo text-neutro-tinta hover:opacity-90 active:scale-95 transition-all">
+<span class="text-[13px] font-medium">20</span>
+</button>
+<!-- Day 21 (Verde - HOY) -->
+<button class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-positivo-fondo text-positivo-tinta hover:opacity-90 active:scale-95 transition-all relative">
+<div class="absolute inset-[2px] rounded-[10px] border-[1.5px] border-acento pointer-events-none"></div>
+<span class="text-[13px] font-bold">21</span>
+</button>
+<!-- Week 4 (Future Days) -->
+<!-- Day 22 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">22</span>
+</div>
+<!-- Day 23 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">23</span>
+</div>
+<!-- Day 24 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">24</span>
+</div>
+<!-- Day 25 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">25</span>
+</div>
+<!-- Day 26 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">26</span>
+</div>
+<!-- Day 27 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">27</span>
+</div>
+<!-- Day 28 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">28</span>
+</div>
+<!-- Week 5 -->
+<!-- Day 29 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">29</span>
+</div>
+<!-- Day 30 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">30</span>
+</div>
+<!-- Day 31 (Future) -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-[12px] bg-superficie-2 text-tinta-3/50">
+<span class="text-[13px] font-medium">31</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-6 flex flex-wrap gap-x-4 gap-y-2 justify-center"><div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-positivo-punto"></div><span class="text-[11px] font-medium text-tinta-3">Ideal</span></div><div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-aviso-punto"></div><span class="text-[11px] font-medium text-tinta-3">Aceptable</span></div><div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-negativo-punto"></div><span class="text-[11px] font-medium text-tinta-3">Fuera de rango</span></div><div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-neutro-punto"></div><span class="text-[11px] font-medium text-tinta-3">Sin registro</span></div></div>
+</section>
+<!-- Day Detail Card -->
+<section class="bg-superficie rounded-xl p-5 shadow-soft">
+<header class="mb-4">
+<h3 class="text-[15px] font-semibold text-tinta">miércoles, 19 de agosto de 2026</h3>
+</header>
+<div class="flex items-end gap-2 mb-4">
+<div class="text-[34px] font-bold text-tinta tracking-[-0.03em] leading-none tabular-nums">
+                    62.5 <span class="text-[15px] font-semibold text-tinta-3 tracking-normal ml-0.5">kg</span>
+</div>
+<div class="text-[13px] text-tinta-3 mb-1 font-medium">
+                    promedio de 3
+                </div>
+</div>
+<div class="inline-flex items-center bg-positivo-fondo text-positivo-tinta px-3 py-1.5 rounded-full mb-6">
+<span class="text-[12px] font-semibold tabular-nums">IMC 24.4</span>
+<span class="mx-1.5 opacity-50">·</span>
+<span class="text-[12px] font-medium">Peso normal</span>
+</div>
+<!-- Entries List -->
+<div class="space-y-0"><div class="flex justify-between items-center py-3 border-b border-borde"><span class="text-[14px] font-medium text-tinta-2 tabular-nums">07:20</span><span class="text-tinta-3 mx-2">—</span><span class="text-[14px] font-semibold text-tinta tabular-nums">62.3 kg</span></div><div class="flex justify-between items-center py-3 border-b border-borde"><span class="text-[14px] font-medium text-tinta-2 tabular-nums">13:05</span><span class="text-tinta-3 mx-2">—</span><span class="text-[14px] font-semibold text-tinta tabular-nums">62.6 kg</span></div><div class="flex justify-between items-center py-3"><span class="text-[14px] font-medium text-tinta-2 tabular-nums">21:15</span><span class="text-tinta-3 mx-2">—</span><span class="text-[14px] font-semibold text-tinta tabular-nums">62.6 kg</span></div></div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-superficie pt-3 pb-safe-area-inset-bottom shadow-bottomNav border-t border-borde md:hidden">
+<!-- Tab 1: Registro (Inactive) -->
+<a class="flex flex-col items-center justify-center text-tinta-3 w-16 hover:text-acento transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">scale</span>
+<span class="text-[11px] font-medium font-label">Registro</span>
+</a>
+<!-- Tab 2: Calendario (Active) -->
+<a class="flex flex-col items-center justify-center text-acento font-semibold w-16 scale-95 transition-transform duration-200" href="#">
+<div class="bg-acento-suave px-4 py-1 rounded-full mb-1">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<span class="text-[11px] font-medium font-label">Calendario</span>
+</a>
+<!-- Tab 3: Progreso (Inactive) -->
+<a class="flex flex-col items-center justify-center text-tinta-3 w-16 hover:text-acento transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">show_chart</span>
+<span class="text-[11px] font-medium font-label">Progreso</span>
+</a>
+<!-- Tab 4: Ajustes (Inactive) -->
+<a class="flex flex-col items-center justify-center text-tinta-3 w-16 hover:text-acento transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">settings</span>
+<span class="text-[11px] font-medium font-label">Ajustes</span>
+</a>
+</nav>
+</body></html>

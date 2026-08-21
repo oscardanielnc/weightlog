@@ -3,6 +3,7 @@ import { resumenDiario, type DiaResumen } from '../lib/db';
 import { diasEntre, fechaLima } from '../lib/lima';
 import { imc, rangoIdeal, zonaDeImc, etiquetaImc } from '../lib/imc';
 import { useConsulta, useDatos } from '../estado/hooks';
+import Cabecera from '../componentes/Cabecera';
 
 const RANGOS = [
   { clave: '7', etiqueta: '7 días', dias: 7 },
@@ -30,10 +31,7 @@ export default function Progreso() {
 
   return (
     <div className="pantalla">
-      <header className="cabecera">
-        <h1>Progreso</h1>
-        <p className="sutil">Promedio diario de peso</p>
-      </header>
+      <Cabecera titulo="Progreso" sub="Promedio diario de peso" />
 
       <div className="filtros" role="group" aria-label="Rango de tiempo">
         {RANGOS.map((r) => (
@@ -47,13 +45,15 @@ export default function Progreso() {
         ))}
       </div>
 
-      <section className="tarjeta">
-        {datos.length === 0 ? (
+      {datos.length === 0 ? (
+        <section className="tarjeta vacio">
           <p className="sutil">No hay registros en este rango.</p>
-        ) : (
+        </section>
+      ) : (
+        <section className="tarjeta">
           <Grafico datos={datos} estatura={estatura} />
-        )}
-      </section>
+        </section>
+      )}
 
       {ultimo && valorImc !== null && (
         <section className="tarjeta metricas">

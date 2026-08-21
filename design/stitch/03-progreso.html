@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="es-PE"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Mi Peso - Progreso</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "fondo": "#FDFCFB",
+                        "superficie": "#FFFFFF",
+                        "superficie-2": "#F6F4F1",
+                        "borde": "#EAE6E1",
+                        "tinta": "#2B2A28",
+                        "tinta-2": "#5C574F",
+                        "tinta-3": "#7A756E",
+                        "acento": "#5B76C6",
+                        "acento-pastel": "#8FA6DC",
+                        "acento-suave": "#EDF1FA",
+                        "positivo-fondo": "#DDEEE4",
+                        "positivo-tinta": "#356E51",
+                        "aviso-fondo": "#F7EBD6",
+                        "aviso-tinta": "#7A5A18",
+                        "negativo-fondo": "#F8E3E3",
+                        "negativo-tinta": "#A34848",
+                        "neutro-fondo": "#F0EDE9",
+                        "neutro-tinta": "#8A857D"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFCFB; }
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+        .safe-area-pt { padding-top: env(safe-area-inset-top, 0px); }
+        .safe-area-pb { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 64px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-fondo text-tinta antialiased safe-area-pb">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 w-full bg-[#FDFCFB] border-b border-[#EAE6E1] safe-area-pt">
+<div class="px-4 pt-4 pb-2">
+<div class="flex justify-between items-center mb-4">
+<span class="text-lg font-bold text-[#2B2A28] font-display">Mi Peso</span>
+<div class="flex items-center gap-1 bg-superficie-2 px-2 py-1 rounded-full text-[11px] text-tinta-3">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Solo en este equipo</span>
+</div>
+</div>
+<div>
+<h1 class="text-2xl font-bold font-headline tracking-tight text-tinta">Progreso</h1>
+<p class="text-[13px] font-body text-[#7A756E]">Promedio diario de peso</p>
+</div>
+</div>
+</header>
+<main class="px-4 py-6 space-y-8">
+<!-- Segmented Control -->
+<div class="bg-superficie-2 rounded-full p-1 flex h-[40px] items-center">
+<button class="flex-1 text-[13px] font-medium text-tinta-3 py-1.5 rounded-full transition-colors">7 días</button>
+<button class="flex-1 text-[13px] font-semibold text-acento bg-superficie shadow-[0_1px_2px_rgba(43,42,40,0.04)] py-1.5 rounded-full transition-colors">30 días</button>
+<button class="flex-1 text-[13px] font-medium text-tinta-3 py-1.5 rounded-full transition-colors">90 días</button>
+<button class="flex-1 text-[13px] font-medium text-tinta-3 py-1.5 rounded-full transition-colors">Todo</button>
+</div>
+<!-- Chart Section -->
+<section class="bg-superficie rounded-[16px] p-4 shadow-[0_1px_2px_rgba(43,42,40,0.04),0_8px_24px_-12px_rgba(43,42,40,0.10)]">
+<div class="relative h-[200px] w-full mt-2 mb-4">
+<!-- Y Axis Labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-[9px] text-tinta-3 tabular-nums py-2 z-10">
+<span>64.4</span>
+<span>63.6</span>
+<span>62.8</span>
+<span>62.0</span>
+</div>
+<!-- Chart Canvas Area (Simulated) -->
+<div class="ml-8 relative h-full w-[calc(100%-2rem)]">
+<!-- Ideal Range Band -->
+<div class="absolute top-[10%] bottom-[40%] w-full bg-[#7FBF9B] rounded-sm pointer-events-none" style="opacity:.12"></div>
+<!-- Grid Lines -->
+<div class="absolute top-0 w-full border-t border-dashed border-borde"></div>
+<div class="absolute top-[33%] w-full border-t border-dashed border-borde"></div>
+<div class="absolute top-[66%] w-full border-t border-dashed border-borde"></div>
+<div class="absolute bottom-0 w-full border-t border-dashed border-borde"></div>
+<!-- SVG Line (Simulated) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M 0,10 L 20,25 L 40,20 L 60,40 L 80,60 L 100,75" fill="none" stroke="#8FA6DC" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Area fill -->
+<path d="M 0,10 L 20,25 L 40,20 L 60,40 L 80,60 L 100,75 L 100,100 L 0,100 Z" fill="#8FA6DC" fill-opacity="0.08"></path>
+<!-- Trend Line -->
+<path d="M 0,15 L 100,70" fill="none" stroke="#7A756E" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"></path>
+</svg>
+<!-- Active Crosshair -->
+<div class="absolute left-[80%] top-0 bottom-0 border-l border-dashed border-acento z-20 pointer-events-none"></div>
+<!-- Active Point -->
+<div class="absolute left-[80%] top-[60%] w-[10px] h-[10px] bg-acento border-[2px] border-superficie rounded-full z-30 transform -translate-x-1/2 -translate-y-1/2"></div>
+</div>
+<!-- X Axis Labels -->
+<div class="absolute bottom-[-20px] left-8 right-0 flex justify-between text-[11px] text-tinta-3 tabular-nums">
+<span>23/07</span>
+<span>21/08</span>
+</div>
+</div>
+<!-- Chart Footer -->
+<div class="mt-8 pt-4 border-t border-borde text-center">
+<p class="text-[14px]">
+<span class="font-bold tabular-nums text-tinta tracking-[-0.03em]">62.6 kg</span>
+<span class="text-tinta-3">·</span>
+<span class="font-medium text-tinta-3 tabular-nums">20/08</span>
+</p>
+<p class="text-[12px] text-tinta-3 mt-1 tabular-nums">(promedio de 2) · IMC 24.5</p>
+</div>
+</section>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-2 gap-3">
+<div class="bg-superficie rounded-[16px] p-4 shadow-[0_1px_2px_rgba(43,42,40,0.04)] border border-borde/50">
+<p class="text-[12px] font-medium text-tinta-3 mb-2">Último promedio</p>
+<p class="text-[18px] font-bold text-tinta tabular-nums tracking-tight">62.4 <span class="text-[13px] font-normal text-tinta-3">kg</span></p>
+</div>
+<div class="bg-positivo-fondo rounded-[16px] p-4 shadow-[0_1px_2px_rgba(43,42,40,0.04)]">
+<p class="text-[12px] font-medium text-positivo-tinta opacity-80 mb-2">Cambio en el rango</p>
+<p class="text-[18px] font-bold text-positivo-tinta tabular-nums tracking-tight">−1.8 <span class="text-[13px] font-normal">kg</span></p>
+</div>
+<div class="bg-superficie rounded-[16px] p-4 shadow-[0_1px_2px_rgba(43,42,40,0.04)] border border-borde/50">
+<p class="text-[12px] font-medium text-tinta-3 mb-2">Días con registro</p>
+<p class="text-[18px] font-bold text-tinta tabular-nums tracking-tight">24</p>
+</div>
+<div class="bg-positivo-fondo rounded-[16px] p-4 shadow-[0_1px_2px_rgba(43,42,40,0.04)]">
+<p class="text-[12px] font-medium text-positivo-tinta opacity-80 mb-2">IMC actual</p>
+<p class="text-[14px] font-bold text-positivo-tinta tabular-nums tracking-tight">24.4 <span class="text-[11px] font-medium ml-1">· Peso normal</span></p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-[#FFFFFF] pt-3 pb-[calc(env(safe-area-inset-bottom,0px)+12px)] shadow-[0_-1px_2px_rgba(43,42,40,0.04)] border-t border-[#EAE6E1]">
+<button class="flex flex-col items-center justify-center text-[#7A756E] hover:text-[#5B76C6] transition-colors">
+<span class="material-symbols-outlined text-[24px] mb-1">scale</span>
+<span class="text-[11px] font-label font-medium">Registro</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#7A756E] hover:text-[#5B76C6] transition-colors">
+<span class="material-symbols-outlined text-[24px] mb-1">calendar_today</span>
+<span class="text-[11px] font-label font-medium">Calendario</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#5B76C6] font-semibold scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 1;">show_chart</span>
+<span class="text-[11px] font-label font-medium">Progreso</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#7A756E] hover:text-[#5B76C6] transition-colors">
+<span class="material-symbols-outlined text-[24px] mb-1">settings</span>
+<span class="text-[11px] font-label font-medium">Ajustes</span>
+</button>
+</nav>
+</body></html>

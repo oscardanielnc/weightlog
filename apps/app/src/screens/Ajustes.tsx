@@ -3,6 +3,7 @@ import { borrarTodo, exportarJson, importarJson, totalRegistros } from '../lib/d
 import { CORTES, rangoIdeal, pesoParaImc } from '../lib/imc';
 import { fechaLima } from '../lib/lima';
 import { useConsulta, useDatos } from '../estado/hooks';
+import Cabecera from '../componentes/Cabecera';
 
 const EST_MIN = 1.0;
 const EST_MAX = 2.5;
@@ -55,10 +56,10 @@ export default function Ajustes() {
 
   return (
     <div className="pantalla">
-      <header className="cabecera">
-        <h1>Ajustes</h1>
-        <p className="sutil">{total} {total === 1 ? 'registro guardado' : 'registros guardados'}</p>
-      </header>
+      <Cabecera
+        titulo="Ajustes"
+        sub={`${total} ${total === 1 ? 'registro guardado' : 'registros guardados'}`}
+      />
 
       <form className="tarjeta" onSubmit={guardar}>
         <h2>Estatura</h2>

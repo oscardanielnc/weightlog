@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="es-PE"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Mi Peso - Ajustes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        fondo: "#FDFCFB",
+                        superficie: "#FFFFFF",
+                        "superficie-2": "#F6F4F1",
+                        borde: "#EAE6E1",
+                        tinta: "#2B2A28",
+                        "tinta-2": "#5C574F",
+                        "tinta-3": "#7A756E",
+                        acento: "#5B76C6",
+                        "acento-pastel": "#8FA6DC",
+                        "acento-suave": "#EDF1FA",
+                        positivo: {
+                            fondo: "#DDEEE4",
+                            tinta: "#356E51",
+                            punto: "#7FBF9B"
+                        },
+                        aviso: {
+                            fondo: "#F7EBD6",
+                            tinta: "#7A5A18",
+                            punto: "#E8C07D"
+                        },
+                        negativo: {
+                            fondo: "#F8E3E3",
+                            tinta: "#A34848",
+                            punto: "#E88C8C"
+                        },
+                        neutro: {
+                            fondo: "#F0EDE9",
+                            tinta: "#8A857D",
+                            punto: "#DDD8D1"
+                        }
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "1.5rem",
+                        full: "999px"
+                    },
+                    fontFamily: {
+                        headline: ["Plus Jakarta Sans", "sans-serif"],
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        body: ["Plus Jakarta Sans", "sans-serif"],
+                        label: ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'suave': '0 1px 2px rgba(43,42,40,.04), 0 8px 24px -12px rgba(43,42,40,.10)'
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FDFCFB;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        .pb-safe-area-inset-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 16px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-fondo text-tinta min-h-screen flex flex-col pb-safe-area-inset-bottom md:pb-0">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 w-full px-4 pt-4 pb-2 bg-[#FDFCFB] border-b border-[#EAE6E1]">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-2xl font-bold font-headline tracking-tight text-tinta">Ajustes</h1>
+<p class="text-[13px] font-body text-[#7A756E] mt-0.5 tabular-nums">142 registros guardados</p>
+</div>
+<div class="flex items-center gap-1.5 bg-superficie-2 px-2.5 py-1.5 rounded-full mb-1">
+<span class="material-symbols-outlined text-[14px] text-tinta-2">lock</span>
+<span class="text-[11px] font-medium text-tinta-2 leading-none">Solo en este equipo</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-md mx-auto px-4 py-6 space-y-6 pb-24 md:pb-12">
+<!-- Tarjeta Estatura -->
+<section class="bg-superficie rounded-lg p-5 shadow-suave border border-transparent">
+<h2 class="text-[15px] font-semibold text-tinta-2 mb-4">Estatura</h2>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex-1 flex items-center bg-superficie-2 border border-borde rounded-md h-[44px] px-3 focus-within:ring-2 focus-within:ring-acento/30 focus-within:border-acento transition-all">
+<input class="w-full bg-transparent border-none outline-none text-[20px] font-bold tabular-nums text-tinta p-0" inputmode="decimal" type="text" value="1.60"/>
+<span class="text-tinta-3 text-[15px] font-medium ml-1">m</span>
+</div>
+<button class="h-[44px] px-5 bg-acento text-white font-semibold rounded-md shadow-sm active:scale-95 transition-transform duration-150">
+                    Guardar
+                </button>
+</div>
+<p class="text-[13px] text-tinta-3 bg-superficie-2/50 p-3 rounded-md">
+                Rango ideal (IMC 18.5–25): <span class="font-bold text-tinta tabular-nums">47.4 – 64.0 kg</span>
+</p>
+</section>
+<!-- Tarjeta Calendario -->
+<section class="bg-superficie rounded-lg p-5 shadow-suave">
+<h2 class="text-[15px] font-semibold text-tinta-2 mb-4">Cómo se colorea el calendario</h2>
+<div class="space-y-0">
+<div class="flex items-center justify-between py-3 border-b border-borde">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-negativo-punto"></div>
+<span class="text-[14px] text-tinta-2">IMC menor a 17</span>
+</div>
+<span class="text-[14px] font-medium text-tinta-2 tabular-nums">menos de 43.5 kg</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-borde">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-aviso-punto"></div>
+<span class="text-[14px] text-tinta-2">IMC 17 – 18.5</span>
+</div>
+<span class="text-[14px] font-medium text-tinta-2 tabular-nums">43.5 – 47.4 kg</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-borde bg-positivo-fondo/20 -mx-2 px-2 rounded-md">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-positivo-punto shadow-[0_0_0_3px_rgba(127,191,155,0.2)]"></div>
+<span class="text-[14px] font-semibold text-tinta">IMC 18.5 – 25</span>
+</div>
+<span class="text-[14px] font-bold text-tinta tabular-nums">47.4 – 64.0 kg</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-borde">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-aviso-punto"></div>
+<span class="text-[14px] text-tinta-2">IMC 25 – 30</span>
+</div>
+<span class="text-[14px] font-medium text-tinta-2 tabular-nums">64.0 – 76.8 kg</span>
+</div>
+<div class="flex items-center justify-between py-3">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-negativo-punto"></div>
+<span class="text-[14px] text-tinta-2">IMC 30 o más</span>
+</div>
+<span class="text-[14px] font-medium text-tinta-2 tabular-nums">76.8 kg o más</span>
+</div>
+</div>
+<p class="text-[12px] text-tinta-3 mt-3 pt-3 border-t border-borde/50 flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] leading-none mt-0.5">info</span>
+                Si un día tiene varias pesadas, se usa el promedio del día (hora de Perú).
+            </p>
+</section>
+<!-- Tarjeta Respaldo -->
+<section class="bg-superficie rounded-lg p-5 shadow-suave">
+<h2 class="text-[15px] font-semibold text-tinta-2 mb-4">Respaldo de datos</h2>
+<div class="grid grid-cols-2 gap-3 mb-4">
+<button class="h-[44px] flex items-center justify-center gap-2 bg-superficie-2 border border-borde/50 rounded-md scale-[0.98] opacity-90 transition-all text-tinta font-medium shadow-inner">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Exportar JSON
+                </button>
+<button class="h-[44px] flex items-center justify-center gap-2 bg-superficie border border-borde rounded-md active:bg-superficie-2 active:scale-[0.98] transition-all text-tinta font-medium">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                    Importar JSON
+                </button>
+</div>
+<p class="text-[12px] text-tinta-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] leading-none mt-0.5">save</span>
+                Todo se guarda solo en este dispositivo. Exporta antes de cambiar de celular.
+            </p>
+</section>
+<!-- Tarjeta Zona Peligrosa -->
+<section class="bg-negativo-fondo/30 rounded-lg p-5 border border-negativo-punto/30">
+<h2 class="text-[15px] font-semibold text-negativo-tinta mb-2">Borrar todos los datos</h2>
+<p class="text-[13px] text-negativo-tinta/80 mb-4">Esta acción no se puede deshacer.</p>
+<div class="space-y-3">
+<button class="w-full h-[44px] bg-negativo-punto text-white font-semibold rounded-md shadow-sm active:scale-95 transition-transform duration-150">
+                    Sí, borrar 142 registros
+                </button>
+<button class="w-full h-[44px] bg-superficie border border-borde rounded-md active:bg-superficie-2 active:scale-[0.98] transition-all text-tinta font-medium">
+                    Cancelar
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-[#FFFFFF] pt-3 pb-safe-area-inset-bottom border-t border-[#EAE6E1] shadow-[0_-1px_2px_rgba(43,42,40,0.04)] md:hidden">
+<button class="flex flex-col items-center justify-center w-[72px] text-[#7A756E] hover:text-[#5B76C6] transition-colors">
+<span class="material-symbols-outlined text-[24px] mb-1">scale</span>
+<span class="text-[11px] font-label font-medium">Registro</span>
+</button>
+<button class="flex flex-col items-center justify-center w-[72px] text-[#7A756E] hover:text-[#5B76C6] transition-colors">
+<span class="material-symbols-outlined text-[24px] mb-1">calendar_today</span>
+<span class="text-[11px] font-label font-medium">Calendario</span>
+</button>
+<button class="flex flex-col items-center justify-center w-[72px] text-[#7A756E] hover:text-[#5B76C6] transition-colors">
+<span class="material-symbols-outlined text-[24px] mb-1">show_chart</span>
+<span class="text-[11px] font-label font-medium">Progreso</span>
+</button>
+<button class="flex flex-col items-center justify-center w-[72px] text-[#5B76C6] font-semibold opacity-100 scale-95 transition-transform duration-200" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined text-[24px] mb-1">settings</span>
+<span class="text-[11px] font-label font-medium">Ajustes</span>
+</button>
+</nav>
+</body></html>

@@ -58,7 +58,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'apple-touch-icon.png', 'sql-wasm.wasm'],
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,svg,wasm}'],
+        globPatterns: ['**/*.{js,css,html,png,svg,wasm,woff2}'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
         // Sin red que consultar: todo se sirve desde la caché precargada.
         navigateFallback: 'index.html',
@@ -75,8 +75,8 @@ export default defineConfig({
         scope: './',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#12151a',
-        theme_color: '#3f6cd4',
+        background_color: '#fdfcfb',
+        theme_color: '#fdfcfb',
         icons: [
           { src: 'icono-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icono-512.png', sizes: '512x512', type: 'image/png' },

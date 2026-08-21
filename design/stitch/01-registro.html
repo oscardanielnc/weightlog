@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es-PE"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Mi Peso - Registro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#8FA6DC",
+          "background-light": "#f6f7f8",
+          "background-dark": "#14171e",
+                        fondo: "#FDFCFB",
+                        superficie: "#FFFFFF",
+                        "superficie-2": "#F6F4F1",
+                        borde: "#EAE6E1",
+                        tinta: "#2B2A28",
+                        "tinta-2": "#5C574F",
+                        "tinta-3": "#7A756E",
+                        acento: "#5B76C6",
+                        "acento-pastel": "#8FA6DC",
+                        "acento-suave": "#EDF1FA",
+                        positivo: { fondo: "#DDEEE4", tinta: "#356E51", solido: "#7FBF9B" },
+                        aviso: { fondo: "#F7EBD6", tinta: "#7A5A18", solido: "#E8C07D" },
+                        negativo: { fondo: "#F8E3E3", tinta: "#A34848", solido: "#E88C8C" },
+                        neutro: { fondo: "#F0EDE9", tinta: "#8A857D", solido: "#DDD8D1" },
+        },
+        fontFamily: {
+          "display": ["Public Sans"],
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+        },
+        borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px",
+                        "card": "16px",
+                        "input": "12px",
+                        "chip": "999px"},
+                    boxShadow: {
+                        "suave": "0 1px 2px rgba(43,42,40,.04), 0 8px 24px -12px rgba(43,42,40,.10)"
+                    },
+      },
+    },
+  }
+</script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FDFCFB;
+            color: #2B2A28;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        .focus-ring-custom:focus-within {
+            box-shadow: 0 0 0 3px rgba(91,118,198,.28);
+            border-color: #5B76C6;
+            outline: none;
+        }
+        /* Mobile safe areas padding classes */
+        .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+        .min-h-screen-safe { min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
+        
+        /* Hide scrollbar but allow scroll */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(844px, 100dvh);
+      max-width: 390px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col min-h-[844px] w-full max-w-[390px] mx-auto bg-fondo">
+<!-- TopAppBar from JSON -->
+<header class="sticky top-0 z-50 w-full px-4 pt-safe pb-2 bg-fondo border-b border-borde">
+<div class="flex items-center justify-between mt-2 mb-4">
+<span class="text-sm font-bold text-tinta">Mi Peso</span>
+<div class="flex items-center bg-superficie-2 px-2 py-1 rounded-chip text-tinta-3">
+<span class="material-symbols-outlined text-[14px] mr-1">lock</span>
+<span class="text-[11px] font-medium">Solo en este equipo</span>
+</div>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[24px] font-bold font-headline tracking-tight text-tinta">Registro</h1>
+<p class="text-[13px] font-body text-tinta-3">viernes, 21 de agosto de 2026</p>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full px-4 pt-6 pb-28 no-scrollbar overflow-y-auto">
+<!-- Weight Capture Card -->
+<section class="bg-superficie rounded-card p-5 shadow-suave mb-6 border border-borde">
+<label class="block text-[13px] font-medium text-tinta-2 mb-2">Peso de ahora</label>
+<div class="flex items-center justify-between bg-superficie-2 rounded-input border border-borde p-4 mb-5 focus-ring-custom transition-all">
+<input class="bg-transparent border-none p-0 text-[44px] font-bold text-tinta w-3/4 tracking-[-0.03em] tabular-nums focus:ring-0 focus:outline-none placeholder-tinta-3" inputmode="decimal" placeholder="00.0" type="number" value="62.4"/>
+<span class="text-base text-tinta-3 font-medium">kg</span>
+</div>
+<button class="w-full h-12 bg-acento text-superficie font-semibold rounded-input hover:bg-opacity-90 active:scale-[0.98] transition-all flex items-center justify-center shadow-sm" type="button">
+                Registrar
+            </button>
+</section>
+<!-- Daily Summary Card -->
+<section class="bg-superficie rounded-card p-5 shadow-suave mb-8 border border-borde">
+<div class="flex items-baseline mb-3">
+<h2 class="text-[34px] font-bold text-tinta tracking-[-0.03em] tabular-nums mr-3">62.4 <span class="text-xl font-medium text-tinta-3 tracking-normal">kg</span></h2>
+<span class="text-[13px] text-tinta-3">promedio de 2 pesadas</span>
+</div>
+<div class="inline-flex items-center bg-positivo-fondo text-positivo-tinta px-3 py-1.5 rounded-chip text-[13px] font-medium mb-4">
+<div class="w-2 h-2 rounded-full bg-positivo-solido mr-2"></div>
+                IMC 24.4 · Peso normal
+            </div>
+<div class="flex items-center text-[13px] text-tinta-3">
+<span class="text-positivo-solido font-bold mr-1">▼</span>
+<span class="tabular-nums font-medium text-tinta-2 mr-1">0.3 kg</span> vs. día anterior
+            </div>
+</section>
+<!-- Section "Últimos registros" -->
+<section class="mb-8">
+<h3 class="text-[15px] font-semibold text-tinta-2 mb-4 px-1">Últimos registros</h3>
+<div class="space-y-3">
+<!-- Card 1 -->
+<article class="bg-superficie rounded-input border border-borde p-4 flex items-center justify-between shadow-[0_1px_2px_rgba(43,42,40,0.02)] transition-colors hover:bg-superficie-2">
+<div>
+<div class="text-[17px] font-bold text-tinta tabular-nums mb-0.5">62.4 <span class="text-[13px] font-medium text-tinta-3">kg</span></div>
+<div class="text-[13px] text-tinta-3">hoy 07:12</div>
+</div>
+<div class="flex space-x-1">
+<button aria-label="Editar" class="w-11 h-11 flex items-center justify-center rounded-full text-tinta-3 hover:bg-superficie-2 hover:text-acento transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Eliminar" class="w-11 h-11 flex items-center justify-center rounded-full text-negativo-tinta hover:bg-negativo-fondo transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</article>
+<!-- Card 2 (SELECTED/EDITING STATE) -->
+<article class="bg-acento-suave rounded-input border border-acento-pastel p-4 flex items-center justify-between shadow-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-acento"></div>
+<div class="pl-2">
+<div class="text-[17px] font-bold text-acento tabular-nums mb-0.5">62.6 <span class="text-[13px] font-medium text-acento opacity-80">kg</span></div>
+<div class="text-[13px] text-tinta-3">hoy 21:40</div>
+</div>
+<div class="flex space-x-1">
+<button aria-label="Guardar" class="w-11 h-11 flex items-center justify-center rounded-full text-acento bg-superficie transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+<button aria-label="Eliminar" class="w-11 h-11 flex items-center justify-center rounded-full text-negativo-tinta hover:bg-negativo-fondo transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-superficie rounded-input border border-borde p-4 flex items-center justify-between shadow-[0_1px_2px_rgba(43,42,40,0.02)] transition-colors hover:bg-superficie-2">
+<div>
+<div class="text-[17px] font-bold text-tinta tabular-nums mb-0.5">62.7 <span class="text-[13px] font-medium text-tinta-3">kg</span></div>
+<div class="text-[13px] text-tinta-3">20/08 07:05</div>
+</div>
+<div class="flex space-x-1">
+<button aria-label="Editar" class="w-11 h-11 flex items-center justify-center rounded-full text-tinta-3 hover:bg-superficie-2 hover:text-acento transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Eliminar" class="w-11 h-11 flex items-center justify-center rounded-full text-negativo-tinta hover:bg-negativo-fondo transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-superficie rounded-input border border-borde p-4 flex items-center justify-between shadow-[0_1px_2px_rgba(43,42,40,0.02)] transition-colors hover:bg-superficie-2">
+<div>
+<div class="text-[17px] font-bold text-tinta tabular-nums mb-0.5">62.5 <span class="text-[13px] font-medium text-tinta-3">kg</span></div>
+<div class="text-[13px] text-tinta-3">19/08 07:20</div>
+</div>
+<div class="flex space-x-1">
+<button aria-label="Editar" class="w-11 h-11 flex items-center justify-center rounded-full text-tinta-3 hover:bg-superficie-2 hover:text-acento transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Eliminar" class="w-11 h-11 flex items-center justify-center rounded-full text-negativo-tinta hover:bg-negativo-fondo transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-superficie rounded-input border border-borde p-4 flex items-center justify-between shadow-[0_1px_2px_rgba(43,42,40,0.02)] transition-colors hover:bg-superficie-2">
+<div>
+<div class="text-[17px] font-bold text-tinta tabular-nums mb-0.5">63.1 <span class="text-[13px] font-medium text-tinta-3">kg</span></div>
+<div class="text-[13px] text-tinta-3">18/08 06:58</div>
+</div>
+<div class="flex space-x-1">
+<button aria-label="Editar" class="w-11 h-11 flex items-center justify-center rounded-full text-tinta-3 hover:bg-superficie-2 hover:text-acento transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Eliminar" class="w-11 h-11 flex items-center justify-center rounded-full text-negativo-tinta hover:bg-negativo-fondo transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Empty State Preview -->
+<section class="bg-superficie-2 rounded-card border border-borde border-dashed p-6 text-center opacity-80 mt-10">
+<span class="material-symbols-outlined text-tinta-3 text-3xl mb-2 opacity-50">scale</span>
+<p class="text-[14px] font-medium text-tinta-2 mb-1">Aún no registras tu peso hoy.</p>
+<p class="text-[13px] text-tinta-3 tabular-nums">Rango ideal para 1.60 m: <span class="font-medium">47.4 – 64.0 kg</span></p>
+</section>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 left-0 right-0 w-full max-w-[390px] mx-auto z-50 flex justify-around items-center bg-superficie pt-3 pb-safe border-t border-borde shadow-[0_-1px_2px_rgba(43,42,40,0.04)]">
+<!-- Active Tab: Registro -->
+<a class="flex flex-col items-center justify-center text-acento font-semibold w-full pb-2 hover:text-acento transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">scale</span>
+<span class="text-[11px] font-label font-medium">Registro</span>
+</a>
+<!-- Inactive Tab: Calendario -->
+<a class="flex flex-col items-center justify-center text-tinta-3 w-full pb-2 hover:text-acento transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">calendar_today</span>
+<span class="text-[11px] font-label font-medium">Calendario</span>
+</a>
+<!-- Inactive Tab: Progreso -->
+<a class="flex flex-col items-center justify-center text-tinta-3 w-full pb-2 hover:text-acento transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">show_chart</span>
+<span class="text-[11px] font-label font-medium">Progreso</span>
+</a>
+<!-- Inactive Tab: Ajustes -->
+<a class="flex flex-col items-center justify-center text-tinta-3 w-full pb-2 hover:text-acento transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="text-[11px] font-label font-medium">Ajustes</span>
+</a>
+</nav>
+</body></html>
