@@ -20,7 +20,7 @@
       property="og:description"
       content="PWA + APK Android con SQLite embebido. Tus datos nunca salen del dispositivo."
     />
-    <meta property="og:image" content="./capturas/1-registro.png" />
+    <meta property="og:image" content="./capturas/1-registro.png?v=1.1.0" />
     <meta property="og:locale" content="es_PE" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -93,10 +93,16 @@
           </ul>
         </div>
 
+        <!--
+          Las capturas viven en public/ y su nombre no lleva hash, así que el
+          borde de Cloudflare puede quedarse con una versión vieja durante
+          horas. El ?v= es la clave de caché: al renovar las capturas hay que
+          subir ese número, o el visitante seguirá viendo las anteriores.
+        -->
         <div class="heroe-vista">
           <figure class="telefono destacado">
             <img
-              src="./capturas/1-registro.png"
+              src="./capturas/1-registro.png?v=1.1.0"
               alt="Pantalla de registro: campo de peso, botón Registrar, promedio del día con su IMC y últimos registros."
               width="780"
               height="1688"
@@ -105,7 +111,7 @@
           </figure>
           <figure class="telefono lateral">
             <img
-              src="./capturas/2-calendario.png"
+              src="./capturas/2-calendario.png?v=1.1.0"
               alt="Calendario mensual con los días coloreados según el IMC promedio de cada día."
               width="780"
               height="1688"
@@ -127,7 +133,7 @@
 
         <div class="rejilla-pantallas">
           <article class="tarjeta revelar">
-            <figure class="telefono"><img src="./capturas/1-registro.png" alt="Pantalla de registro" width="780" height="1688" loading="lazy" /></figure>
+            <figure class="telefono"><img src="./capturas/1-registro.png?v=1.1.0" alt="Pantalla de registro" width="780" height="1688" loading="lazy" /></figure>
             <h3>Registro</h3>
             <p>
               Lo primero que aparece al abrir. Escribes el peso, pulsas <em>Registrar</em> y queda
@@ -137,7 +143,7 @@
           </article>
 
           <article class="tarjeta revelar">
-            <figure class="telefono"><img src="./capturas/2-calendario.png" alt="Pantalla de calendario" width="780" height="1688" loading="lazy" /></figure>
+            <figure class="telefono"><img src="./capturas/2-calendario.png?v=1.1.0" alt="Pantalla de calendario" width="780" height="1688" loading="lazy" /></figure>
             <h3>Calendario</h3>
             <p>
               Cada día se pinta con el color de tu IMC: verde en el rango ideal, ámbar cerca del
@@ -147,7 +153,7 @@
           </article>
 
           <article class="tarjeta revelar">
-            <figure class="telefono"><img src="./capturas/3-progreso.png" alt="Pantalla de progreso" width="780" height="1688" loading="lazy" /></figure>
+            <figure class="telefono"><img src="./capturas/3-progreso.png?v=1.1.0" alt="Pantalla de progreso" width="780" height="1688" loading="lazy" /></figure>
             <h3>Progreso</h3>
             <p>
               El plano de peso contra tiempo, con la franja del rango ideal de fondo y una línea de
@@ -156,7 +162,7 @@
           </article>
 
           <article class="tarjeta revelar">
-            <figure class="telefono"><img src="./capturas/4-ajustes.png" alt="Pantalla de ajustes" width="780" height="1688" loading="lazy" /></figure>
+            <figure class="telefono"><img src="./capturas/4-ajustes.png?v=1.1.0" alt="Pantalla de ajustes" width="780" height="1688" loading="lazy" /></figure>
             <h3>Ajustes</h3>
             <p>
               Tu estatura (base del cálculo de IMC), la tabla de colores traducida a kilos y el
