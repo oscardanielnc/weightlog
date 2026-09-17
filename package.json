@@ -34,8 +34,8 @@
     "android:studio": "npm run android:studio --workspace @control-weight/app"
   },
   "devDependencies": {
-    "oxlint": "^1.75.0",
-    "typescript": "~6.0.2"
+    "oxlint": "^1.82.0",
+    "typescript": "~7.0.2"
   },
   "allowScripts": {
     "esbuild@0.28.2": true
