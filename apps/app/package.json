@@ -21,7 +21,7 @@
     "@capacitor/core": "^8.5.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "sql.js": "^1.14.2"
+    "sql.js": "^1.15.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.5.0",
